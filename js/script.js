@@ -31,6 +31,7 @@
 function onClick(clickId, updateId, price) {
     document.getElementById(clickId).addEventListener("click", function () {
         updatePrice(updateId, price);
+
     });
 }
 
@@ -67,6 +68,7 @@ function updatePrice(itemId, price) {
 const fakeCode = 'pHero';
 document.getElementById('apply-btn').addEventListener('click',function(){
     const code = document.getElementById('promo-input').value;
+
     if(code === fakeCode){
         const total = document.getElementById('total-price');
         let totalPrice= parseFloat(total.innerText);
@@ -75,21 +77,37 @@ document.getElementById('apply-btn').addEventListener('click',function(){
 
         totalPrice = totalPrice - discount;
         total.innerText = totalPrice;//browser er inner text notun kore update korsi new discount price
-        total.value= '';
+        // total.value= '';
+    }
+
+    const pin = document.getElementById('promo-input').value;
+    const successMessage = document.getElementById('notify-success');
+    const failError = document.getElementById('notify-fail');
+    if(pin == fakeCode){
+        // console.log('yes');
+        successMessage.style.display = 'block';
+        failError.style.display = 'none';
     }
     else{
-
+        const failError = document.getElementById('notify-fail');
+        failError.style.display = 'block';
+        successMessage.style.display = 'none';
     }
-
+    
+    document.getElementById('promo-input').value = "";
 });
 
-const room = document.querySelector("button-room");
-const buttons = document.querySelectorAll("btn1");
-room.addEventListener('click', e => {
-    if(btn1.getAttribute('id') == e.target.getAttribute('id')){
-        btn1.classList.add('active');
-    }
-    else{
-        btn1.classList.remove('active');
-    }
-})
+// const room = document.querySelector("button-room");
+// const buttons = document.querySelectorAll("btn1");
+// room.addEventListener('click', e => {
+//     if(btn1.getAttribute('id') == e.target.getAttribute('id')){
+//         btn1.classList.add('active');
+//     }
+//     else{
+//         btn1.classList.remove('active');
+//     }
+// })
+$("p.btn1").click(function(){
+    $("p.btn1").css("background-color", "black");
+  $(this).css("background-color", "red");
+});
